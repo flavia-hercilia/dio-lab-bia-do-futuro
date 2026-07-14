@@ -9,3 +9,5 @@ data,descricao,categoria,valor,tipo
 2025-10-15,Conta de Luz,moradia,180.00,saida
 2025-10-20,Academia,saude,99.00,saida
 2025-10-25,Combustível,transporte,250.00,saida
+2026-07-10,ELETRO_SHOP*INTERNET,eletronicos,1499.00,saida
+2026-07-11,Assinatura Curso Online,lazer,299.90,saida

@@ -1,0 +1,23 @@
+[
+  {
+    "cenario": "Contestação por Fraude",
+    "prazo_solicitacao": "Até 90 dias após a data da transação",
+    "prazo_resolucao": "Estorno provisório em até 3 dias úteis durante a análise",
+    "acao_necessaria": "Bloqueio imediato do cartão atual via app e emissão de nova via",
+    "instrucao_cliente": "Se você não reconhece a compra, precisamos bloquear seu cartão atual por segurança para evitar novas cobranças, e iniciaremos o processo de contestação do valor."
+  },
+  {
+    "cenario": "Direito de Arrependimento (CDC Artigo 49)",
+    "prazo_solicitacao": "Até 7 dias após a compra ou recebimento do produto",
+    "prazo_resolucao": "Depende do estabelecimento comercial onde a compra foi feita",
+    "acao_necessaria": "Contato direto do cliente com a loja/estabelecimento",
+    "instrucao_cliente": "Para compras online ou por telefone, você tem o direito de se arrepender em até 7 dias. O cancelamento e estorno devem ser solicitados diretamente ao estabelecimento onde você fez a compra. Se a loja se recusar ou não responder, nos avise para intermediarmos com o comprovante de contato."
+  },
+  {
+    "cenario": "Parcelamento de Fatura e Juros",
+    "prazo_solicitacao": "Até o dia do vencimento da fatura",
+    "prazo_resolucao": "Efetivado no próximo ciclo de fatura após o pagamento da entrada",
+    "acao_necessaria": "Simulação e contratação direto pelo menu de faturas do app",
+    "instrucao_cliente": "Se precisar parcelar a fatura deste mês, os juros são de 5.9% ao mês. Você pode realizar a simulação das parcelas direto pelo aplicativo na opção 'Parcelar Fatura' antes do vencimento."
+  }
+]

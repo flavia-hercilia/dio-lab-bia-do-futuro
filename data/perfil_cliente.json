@@ -1,0 +1,11 @@
+{
+  "nome": "João Silva",
+  "idade": 32,
+  "profissao": "Analista de Sistemas",
+  "renda_mensal": 5000.00,
+  "cartao_ativo": true,
+  "limite_total": 5000.00,
+  "fatura_atual": 4287.80,
+  "limite_disponivel": 712.20,
+  "vencimento_fatura": "2026-07-20"
+}
