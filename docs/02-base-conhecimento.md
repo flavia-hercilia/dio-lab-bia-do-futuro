@@ -26,19 +26,19 @@ Os dados originais voltados para investimentos foram adaptados para o ecossistem
 ## Estratégia de Integração
 
 ### Como os dados são carregados?
-Os arquivos JSON e CSV estão armazenados na pasta `data` do projeto dentro do workspace da IDE **Antigravity**. O ambiente gerencia o escopo desses arquivos automaticamente, permitindo que o modelo Gemini os acesse como uma base de dados local associada ao agente.
+Os arquivos JSON e CSV estão armazenados na pasta `data/` do projeto. O aplicativo Streamlit (através do arquivo `app.py`) é responsável por ler esses arquivos utilizando a biblioteca `pandas` (para tabelas CSV) e o módulo nativo `json`. Os dados são armazenados em cache na memória (`@st.cache_data`) no início da execução da aplicação para garantir velocidade.
 
 ### Como os dados são usados no prompt?
-Os dados não são injetados de forma estática no System Prompt. Em vez disso, o agente utiliza a capacidade de RAG (Geração Aumentada por Recuperação) nativa do Antigravity. Ao receber uma pergunta do usuário (ex: *"Qual é o meu limite?"*), a Lumi faz uma varredura dinâmica no arquivo `perfil_cliente.json` para extrair a informação correta em tempo de execução, evitando alucinações de valores.
+Os dados lidos são convertidos em texto puro e injetados dinamicamente como uma string gigante formatada (Contexto de Dados) diretamente dentro do *System Prompt*. Dessa forma, antes mesmo da primeira mensagem do usuário, a API do Gemini já recebe todas as regras, o extrato e o perfil do cliente como base de conhecimento exclusiva para aquela sessão, impedindo que ela invente transações que não estão mapeadas ali.
 
 ---
 
 ## Exemplo de Contexto Montado
 
-Quando o usuário inicia uma interação, o Antigravity disponibiliza o contexto estruturado para o agente da seguinte forma:
+Quando o aplicativo Streamlit é iniciado, ele estrutura e envia o contexto para o agente da seguinte forma:
 
 ```text
-[PERFIL_CLIENTE]
+[DADOS DO CLIENTE]
 {
   "nome": "João Silva",
   "idade": 32,
@@ -49,11 +49,12 @@ Quando o usuário inicia uma interação, o Antigravity disponibiliza o contexto
   "vencimento_fatura": "2026-07-20"
 }
 
-[ULTIMAS_TRANSACOES_RELEVANTES]
-- 2026-07-01: Supermercado Central - R$ 450.00 (alimentacao)
-- 2026-07-03: Assinatura Netflix - R$ 55.90 (lazer)
-- 2026-07-10: ELETRO_SHOP*INTERNET - R$ 1499.00 (eletronicos)
-- 2026-07-11: Assinatura Curso Online - R$ 299.90 (educacao)
+[TRANSAÇÕES DA FATURA ATUAL]
+data,descricao,categoria,valor,tipo
+2026-07-01,Supermercado Central,alimentacao,450.00,saida
+2026-07-03,Assinatura Netflix,lazer,55.90,saida
+2026-07-10,ELETRO_SHOP*INTERNET,eletronicos,1499.00,saida
+2026-07-11,Assinatura Curso Online,educacao,299.90,saida
 
-[DIRETRIZ_DE_NEGOCIO_APLICAVEL]
+[REGRAS DE NEGÓCIO DO BANCO]
 - Cenário: Contestação por Fraude. Prazo de resolução: Estorno provisório em até 3 dias úteis. Ação: Bloqueio do cartão atual.

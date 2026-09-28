@@ -49,9 +49,9 @@ Acessível, simpático e paciente, mas mantendo a objetividade e clareza para re
 
 ```mermaid
 flowchart TD
-    A[Usuário] --> B["Antigravity IDE (Interface de Teste)"]
-    B --> C[Gemini LLM]
-    C --> D[Base de Conhecimento]
+    A[Usuário] --> B["Interface Web (Streamlit)"]
+    B --> C[Gemini LLM via API]
+    C --> D[(Base de Conhecimento RAG)]
     D --> C
     C --> E[Diretrizes de Segurança / Guardrails]
     E --> F[Resposta da Lumi]
@@ -61,8 +61,8 @@ flowchart TD
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | [Antigravity IDE](https://antigravity.google) |
-| LLM | Gemini |
+| Interface | Streamlit (Python Web App) |
+| LLM | API do Google Gemini |
 | Base de Conhecimento | JSON/CSV mockados na pasta `data` |
 | Validação | System Prompt e Guardrails |
 
@@ -72,9 +72,9 @@ flowchart TD
 
 ### Estratégias Adotadas
 
-- [ ] Só responda com base estrita nas transações encontradas no arquivo transacoes.csv
-- [ ] Nunca solicite dados sensíveis como senhas, código de segurança (CVV) ou o número completo do cartão do cliente.
-- [ ] Admita quando não encontrar uma transação e ofereça o caminho para falar com o atendente humano.
+- [x] Só responda com base estrita nas transações encontradas no arquivo transacoes.csv
+- [x] Nunca solicite dados sensíveis como senhas, código de segurança (CVV) ou o número completo do cartão do cliente.
+- [x] Admita quando não encontrar uma transação e ofereça o caminho para falar com o atendente humano.
 
 ### Limitações Declaradas
 > O que o agente NÃO faz?
